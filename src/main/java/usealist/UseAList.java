@@ -6,6 +6,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class UseAList {
+
+  public static void doStuff(List<String> ls) {}
+  public static void doStuff(int ls) {}
+  // not a valid overload: generic type param doesn't make it different
+//  public static void doStuff(List<StringBuilder> ls) {}
+
 //  public static void addToList(List<String> l) {
   public static void addToList(List l) {
     l.add(0, LocalDate.now());
@@ -37,5 +43,16 @@ public class UseAList {
     var obj2
 //        = b ? "Hello" : new StringBuilder();
         = b ? "Hello" : 99;
+
+    Class listCl = new ArrayList<String>().getClass();
+    System.out.println(listCl);
+
+    Class list2Cl = new ArrayList<LocalDate>().getClass();
+    System.out.println(list2Cl);
+
+    System.out.println(listCl == list2Cl);
+
+    // Nope, generics (currently) is limited to reference types
+//    List<int> li;
   }
 }
